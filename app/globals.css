@@ -1,0 +1,443 @@
+:root {
+  --text: #252525;
+  --muted: #777;
+  --blue: #2563eb;
+  --line: #e5e5e5;
+  --bg: #fff;
+  --soft: #f7f7f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.nav {
+  width: min(1200px, calc(100% - 28px));
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  color: #222;
+  font-size: 22px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.nav-links a {
+  color: #34495e;
+}
+
+.nav-links a.active {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #34495e;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  fill: currentColor;
+}
+
+main {
+  width: min(1120px, calc(100% - 44px));
+  margin: 0 auto;
+  padding: 72px 0 56px;
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 78px;
+  align-items: start;
+}
+
+.sidebar {
+  text-align: center;
+}
+
+.portrait {
+  width: 230px;
+  height: 230px;
+  max-width: 100%;
+  margin: 0 auto 24px;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.role {
+  margin: 10px 0 0;
+  color: #858585;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.affiliation {
+  margin: 4px 0 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.social {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+}
+
+.social svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+.intro {
+  max-width: 760px;
+  font-size: 18px;
+}
+
+.intro p {
+  margin: 0 0 24px;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-top: 42px;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.compact-section {
+  margin: 0;
+  padding: 0;
+  border-top: 0;
+}
+
+ul {
+  margin: 0;
+  padding-left: 25px;
+}
+
+li {
+  margin: 3px 0;
+}
+
+.education-list {
+  display: grid;
+  gap: 14px;
+}
+
+.education-item {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.edu-icon {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  fill: #333;
+}
+
+.degree {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.school {
+  margin: 2px 0 0;
+  color: #6d6d6d;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+section {
+  margin-top: 74px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+
+.section-title {
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.section-title p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.publication-card {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.9fr) minmax(0, 1.1fr);
+  gap: 32px;
+  align-items: center;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #ededed;
+}
+
+.publication-card:last-child {
+  border-bottom: 0;
+}
+
+.publication-list {
+  display: grid;
+  gap: 28px;
+}
+
+.publication-figure {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 14px;
+}
+
+.publication-figure img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.publication-content h3 {
+  margin-bottom: 6px;
+}
+
+h3 {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.publication-authors,
+.publication-links {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.citation-label {
+  color: #333;
+  font-weight: 700;
+}
+
+.publication-content ul {
+  margin-top: 8px;
+}
+
+.award-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.award-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 22px;
+  align-items: baseline;
+  color: #596c73;
+  font-size: 15px;
+}
+
+.award-name::before {
+  content: "\2022";
+  margin-right: 10px;
+  color: #777;
+}
+
+.award-year {
+  color: #8d5e4a;
+  text-align: right;
+  white-space: nowrap;
+}
+
+footer {
+  width: min(1120px, calc(100% - 44px));
+  margin: 0 auto;
+  padding: 24px 0 42px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  main {
+    padding-top: 42px;
+  }
+
+  .profile-layout {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .intro {
+    max-width: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .topbar {
+    height: auto;
+  }
+
+  .nav {
+    padding: 12px 0;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+
+  .nav-links {
+    width: 100%;
+    order: 3;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  main {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .portrait {
+    width: 210px;
+    height: 210px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .role {
+    font-size: 18px;
+  }
+
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .publication-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .award-item {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .award-year {
+    padding-left: 22px;
+    text-align: left;
+  }
+}
