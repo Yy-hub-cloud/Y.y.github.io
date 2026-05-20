@@ -28,6 +28,9 @@ const awards = [
   },
 ];
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const assetPath = (path: string) => `${basePath}${path}`;
+
 function SearchIcon() {
   return (
     <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -105,7 +108,7 @@ export default function Home() {
             <a href="#publications" aria-label="Search sections">
               <SearchIcon />
             </a>
-            <a href="/cv.pdf" aria-label="Download CV">
+            <a href={assetPath("/cv.pdf")} aria-label="Download CV">
               <ProfileIcon />
             </a>
           </div>
@@ -115,7 +118,7 @@ export default function Home() {
       <main>
         <div className="profile-layout">
           <aside className="sidebar" id="contact">
-            <img className="portrait" src="/profile.jpg" alt="Portrait of Yang Yu" />
+            <img className="portrait" src={assetPath("/profile.jpg")} alt="Portrait of Yang Yu" />
             <h1>Yang Yu</h1>
             <p className="role">PhD Student</p>
             <p className="affiliation">
@@ -128,7 +131,7 @@ export default function Home() {
               <a className="social" href="tel:+8615647226966" aria-label="Phone">
                 <PhoneIcon />
               </a>
-              <a className="social" href="/cv.pdf" aria-label="CV">
+              <a className="social" href={assetPath("/cv.pdf")} aria-label="CV">
                 <CvIcon />
               </a>
               <a className="social" href="https://github.com/" aria-label="GitHub">
@@ -168,7 +171,7 @@ export default function Home() {
               <div className="publication-list">
                 <article className="publication-card">
                   <div className="publication-figure">
-                    <img src="/publication-placeholder.svg" alt="Publication figure placeholder" />
+                    <img src={assetPath("/publication-placeholder.svg")} alt="Publication figure placeholder" />
                   </div>
                   <div className="publication-content">
                     <h3>Underwater Electrophysiological Interface for Stable Muscle Signal Acquisition</h3>
