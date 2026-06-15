@@ -1,7 +1,9 @@
 import { ProfileCard, SiteFooter, SiteHeader, assetPath, routePath } from "./site-components";
-import { awards, educationItems, publication, researchAreas, researchTags } from "./site-data";
+import { awards, educationItems, publications, researchAreas } from "./site-data";
 
 export default function Home() {
+  const rollingPublications = [...publications, ...publications];
+
   return (
     <>
       <SiteHeader active="Home" />
@@ -34,21 +36,12 @@ export default function Home() {
                 GitHub
               </a>
             </div>
-
-            <div className="tag-cloud" aria-label="Research keywords">
-              {researchTags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
           </div>
         </section>
 
         <section className="focus-strip" id="research" aria-labelledby="research-title">
           <div className="focus-heading">
             <h2 id="research-title">Research Focus</h2>
-            <a className="section-more" href={routePath("/research")}>
-              View all
-            </a>
           </div>
           <div className="research-grid">
             {researchAreas.map((area) => (
@@ -66,29 +59,47 @@ export default function Home() {
         </section>
 
         <div className="overview-grid">
-          <section className="overview-section publication-section" id="publications" aria-labelledby="publications-title">
-            <h2 id="publications-title">Selected Publication</h2>
-            <article className="publication-card">
-              <div className="publication-figure">
-                <img src={assetPath(publication.imagePath)} alt="Publication figure placeholder" />
+          <section
+            className="overview-section publication-section"
+            id="publications"
+            aria-labelledby="publications-title"
+          >
+            <div className="section-title-row">
+              <h2 id="publications-title">Latest Publications</h2>
+              <a className="section-more" href={routePath("/publications")}>
+                View all
+              </a>
+            </div>
+            <div className="publication-carousel" aria-label="Latest five publications">
+              <div className="publication-track">
+                {rollingPublications.map((item, index) => (
+                  <article className="publication-card publication-slide" key={`${item.title}-${index}`}>
+                    <div className="publication-figure">
+                      <img src={assetPath(item.imagePath)} alt="" />
+                    </div>
+                    <div className="publication-content">
+                      <div className="publication-meta">
+                        <span>{item.status}</span>
+                        <span>Citations: {item.citations}</span>
+                      </div>
+                      <h3>{item.title}</h3>
+                      <p className="publication-authors">{item.authors}</p>
+                      <ul className="highlight-list">
+                        {item.highlights.slice(0, 2).map((highlight) => (
+                          <li key={highlight}>{highlight}</li>
+                        ))}
+                      </ul>
+                      <a className="project-link" href={routePath("/publications")}>
+                        Publication details
+                      </a>
+                    </div>
+                  </article>
+                ))}
               </div>
-              <div className="publication-content">
-                <div className="publication-meta">
-                  <span>{publication.status}</span>
-                  <span>Citations: {publication.citations}</span>
-                </div>
-                <h3>{publication.title}</h3>
-                <p className="publication-authors">{publication.authors}</p>
-                <ul className="highlight-list">
-                  {publication.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-                <a className="project-link" href={routePath("/publications")}>
-                  View Publication
-                </a>
-              </div>
-            </article>
+            </div>
+            <div className="carousel-note" aria-hidden="true">
+              Auto-scrolling latest 5
+            </div>
           </section>
 
           <section className="overview-section education-section" id="education" aria-labelledby="education-title">
@@ -100,17 +111,11 @@ export default function Home() {
                   <div>
                     <h3>{item.degree}</h3>
                     <p className="school">{item.school}</p>
-                    <p className="timeline-period">
-                      {item.period}
-                      {item.detail ? ` / ${item.detail}` : ""}
-                    </p>
+                    <p className="timeline-period">{item.period}</p>
                   </div>
                 </article>
               ))}
             </div>
-            <a className="section-more" href={routePath("/education")}>
-              Full education
-            </a>
           </section>
 
           <section className="overview-section awards-section" id="awards" aria-labelledby="awards-title">

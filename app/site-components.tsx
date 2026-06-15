@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { navItems, profile } from "./site-data";
 
-export type ActiveNav = "Home" | "Research" | "Publications" | "Education" | "Awards" | "Contact";
+export type ActiveNav = "Home" | "Publications" | "Awards" | "Contact";
 
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 

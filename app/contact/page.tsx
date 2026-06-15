@@ -8,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(profile.mapQuery)}&output=embed`;
+
   return (
     <>
       <SiteHeader active="Contact" />
@@ -28,6 +30,18 @@ export default function ContactPage() {
             <a href={`tel:${profile.phone}`}>{profile.phone}</a>
             <a href={assetPath(profile.cvPath)}>Download CV</a>
             <a href={profile.githubUrl}>GitHub</a>
+            <div className="location-card">
+              <div>
+                <h3>Location</h3>
+                <p>{profile.location}</p>
+              </div>
+              <iframe
+                title={`Map of ${profile.location}`}
+                src={mapSrc}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
         </section>
       </main>

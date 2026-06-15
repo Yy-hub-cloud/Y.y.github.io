@@ -3,6 +3,8 @@ export const profile = {
   role: "PhD Student",
   affiliation: "Nankai University",
   affiliationUrl: "https://www.nankai.edu.cn/",
+  location: "Nankai University, Tianjin, China",
+  mapQuery: "Nankai University, Tianjin, China",
   email: "e1352120@u.nus.edu",
   phone: "+8615647226966",
   githubUrl: "https://github.com/",
@@ -12,36 +14,14 @@ export const profile = {
 
 export const navItems = [
   { label: "Home", href: "/" },
-  { label: "Research", href: "/research" },
   { label: "Publications", href: "/publications" },
-  { label: "Education", href: "/education" },
   { label: "Awards", href: "/awards" },
   { label: "Contact", href: "/contact" },
-];
-
-export const researchTags = [
-  "Flexible Bioelectronics",
-  "Underwater Electrophysiology",
-  "MEMS",
-  "3D Stretchable Devices",
-  "Electronic Skin",
-  "Signal Analysis",
 ];
 
 export const researchAreas = [
   {
     label: "01",
-    title: "Underwater Electrophysiology",
-    summary:
-      "Flexible, tissue-adhesive electrodes designed for stable electrophysiological recording in dynamic wet environments.",
-    details: [
-      "Underwater EMG acquisition and stability evaluation.",
-      "Wet tissue-electrode interface design.",
-      "Signal fidelity analysis under dynamic motion.",
-    ],
-  },
-  {
-    label: "02",
     title: "Flexible & Stretchable Devices",
     summary:
       "Three-dimensional stretchable devices and electronic skin systems for conformal, durable biointerfaces.",
@@ -52,7 +32,7 @@ export const researchAreas = [
     ],
   },
   {
-    label: "03",
+    label: "02",
     title: "MEMS & Microfabrication",
     summary:
       "MEMS-enabled device integration, micro/nanofabrication, and materials characterization for stretchable systems.",
@@ -64,21 +44,85 @@ export const researchAreas = [
   },
 ];
 
-export const publication = {
-  status: "In preparation",
-  citations: "TBD",
-  title: "Underwater Electrophysiological Interface for Stable Muscle Signal Acquisition",
-  authors: "Yang Yu, collaborators, and Changsheng Wu",
-  imagePath: "/publication-placeholder.svg",
-  projectHref: "#",
-  highlights: [
-    "Stable underwater EMG acquisition with SNR > 30 dB and continuous recording over 30 min.",
-    "Flexible tissue-adhesive electrodes for dynamic wet environments.",
-    "Signal fidelity evaluation and fatigue-related feature extraction.",
-  ],
-  overview:
-    "This work focuses on stable muscle-signal acquisition in underwater environments through flexible tissue-adhesive electrodes and signal-analysis workflows.",
-};
+export const publications = [
+  {
+    status: "In preparation",
+    citations: "TBD",
+    title: "Underwater Electrophysiological Interface for Stable Muscle Signal Acquisition",
+    authors: "Yang Yu, collaborators, and Changsheng Wu",
+    imagePath: "/publication-placeholder.svg",
+    projectHref: "#",
+    highlights: [
+      "Stable underwater EMG acquisition with SNR > 30 dB and continuous recording over 30 min.",
+      "Flexible tissue-adhesive electrodes for dynamic wet environments.",
+      "Signal fidelity evaluation and fatigue-related feature extraction.",
+    ],
+    overview:
+      "This work focuses on stable muscle-signal acquisition in underwater environments through flexible tissue-adhesive electrodes and signal-analysis workflows.",
+  },
+  {
+    status: "Coming soon",
+    citations: "TBD",
+    title: "Flexible Tissue-Adhesive Electrodes for Wet Biointerfaces",
+    authors: "Details to be added",
+    imagePath: "/publication-placeholder.svg",
+    projectHref: "#",
+    highlights: [
+      "Publication metadata will be added after manuscript details are finalized.",
+      "Prepared as a future slot for electrode-interface research output.",
+    ],
+    overview:
+      "A reserved publication slot for future work on flexible, tissue-adhesive bioelectronic interfaces.",
+    isPlaceholder: true,
+  },
+  {
+    status: "Coming soon",
+    citations: "TBD",
+    title: "Signal Fidelity Analysis in Dynamic Wet Environments",
+    authors: "Details to be added",
+    imagePath: "/publication-placeholder.svg",
+    projectHref: "#",
+    highlights: [
+      "Publication metadata will be added after manuscript details are finalized.",
+      "Prepared as a future slot for wet-environment signal-analysis output.",
+    ],
+    overview:
+      "A reserved publication slot for future work on electrophysiological signal fidelity and feature extraction.",
+    isPlaceholder: true,
+  },
+  {
+    status: "Coming soon",
+    citations: "TBD",
+    title: "Three-Dimensional Stretchable Device Architectures",
+    authors: "Details to be added",
+    imagePath: "/publication-placeholder.svg",
+    projectHref: "#",
+    highlights: [
+      "Publication metadata will be added after manuscript details are finalized.",
+      "Prepared as a future slot for stretchable device research output.",
+    ],
+    overview:
+      "A reserved publication slot for future work on three-dimensional stretchable devices and electronic skin.",
+    isPlaceholder: true,
+  },
+  {
+    status: "Coming soon",
+    citations: "TBD",
+    title: "MEMS-Enabled Soft Biointerface Fabrication",
+    authors: "Details to be added",
+    imagePath: "/publication-placeholder.svg",
+    projectHref: "#",
+    highlights: [
+      "Publication metadata will be added after manuscript details are finalized.",
+      "Prepared as a future slot for MEMS and micro/nanofabrication output.",
+    ],
+    overview:
+      "A reserved publication slot for future work on MEMS-enabled fabrication for soft biointerfaces.",
+    isPlaceholder: true,
+  },
+];
+
+export const publication = publications[0];
 
 export const educationItems = [
   {
@@ -90,13 +134,11 @@ export const educationItems = [
     period: "2024.7 - 2025.7",
     degree: "MSc in Materials Science and Engineering",
     school: "National University of Singapore, Singapore",
-    detail: "GPA: 4.25/5",
   },
   {
     period: "2020.9 - 2024.6",
     degree: "BEng in Materials Science and Engineering",
     school: "Jilin University, China",
-    detail: "GPA: 82.51/100",
   },
 ];
 
