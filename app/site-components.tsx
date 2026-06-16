@@ -55,9 +55,15 @@ export function GraduationCapIcon() {
   );
 }
 
-export function SiteHeader({ active }: { active: ActiveNav }) {
+export function SiteHeader({
+  active,
+  variant = "default",
+}: {
+  active: ActiveNav;
+  variant?: "default" | "overlay";
+}) {
   return (
-    <header className="topbar">
+    <header className={`topbar${variant === "overlay" ? " topbar-overlay" : ""}`}>
       <nav className="nav" aria-label="Primary navigation">
         <a className="brand" href={routePath("/")}>
           {profile.name}
