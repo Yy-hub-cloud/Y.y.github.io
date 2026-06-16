@@ -1,4 +1,5 @@
-import { SiteFooter, SiteHeader, assetPath, routePath } from "./site-components";
+import { CoverJump } from "./cover-jump";
+import { ProfileCard, SiteFooter, SiteHeader, assetPath, routePath } from "./site-components";
 import { awards, educationItems, publications, researchAreas } from "./site-data";
 
 export default function Home() {
@@ -6,22 +7,54 @@ export default function Home() {
 
   return (
     <>
-      <SiteHeader active="Home" variant="overlay" />
+      <CoverJump />
 
-      <main className="home-main">
-        <section className="landing-hero" id="home" aria-labelledby="hero-title">
-          <img className="landing-hero-image" src={assetPath("/hero-campus.png")} alt="" />
-          <div className="landing-hero-overlay" />
-          <div className="landing-hero-content">
-            <h1 id="hero-title">Welcome to Yu Yang's homepage</h1>
-            <p>Walk with excellence</p>
-          </div>
-          <a className="scroll-cue" href="#home-content" aria-label="Scroll to homepage content">
-            <span />
-          </a>
-        </section>
+      <section className="landing-hero" id="cover" aria-labelledby="cover-title">
+        <img className="landing-hero-image" src={assetPath("/hero-campus.png")} alt="" />
+        <div className="landing-hero-overlay" />
+        <div className="landing-hero-content">
+          <h1 id="cover-title">Welcome to Yu Yang's homepage</h1>
+          <p>Walk with excellence</p>
+        </div>
+        <button className="scroll-cue" type="button" aria-label="Enter homepage">
+          <span />
+        </button>
+      </section>
 
-        <div className="home-content" id="home-content">
+      <div className="home-site" id="home-content">
+        <SiteHeader active="Home" />
+
+        <main>
+          <section className="hero-shell" id="home" aria-labelledby="hero-title">
+            <ProfileCard />
+
+            <div className="hero-content">
+              <h2 id="hero-title" className="hero-title">
+                Welcome to my homepage
+              </h2>
+              <div className="intro">
+                <p>
+                  I work at the intersection of materials science, flexible electronics, and
+                  bioelectronic interfaces. My current research explores micro/nano-fabrication,
+                  MEMS-enabled devices, stretchable systems, and electrophysiological signal
+                  acquisition for wet and dynamic environments.
+                </p>
+              </div>
+
+              <div className="hero-actions">
+                <a className="button button-primary" href={assetPath("/cv.pdf")}>
+                  Download CV
+                </a>
+                <a className="button button-secondary" href="mailto:e1352120@u.nus.edu">
+                  Email Me
+                </a>
+                <a className="button button-ghost" href="https://github.com/">
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </section>
+
           <section className="focus-strip" id="research" aria-labelledby="research-title">
             <div className="focus-heading">
               <h2 id="research-title">Research Focus</h2>
@@ -119,8 +152,8 @@ export default function Home() {
               </a>
             </section>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
 
       <SiteFooter />
     </>
