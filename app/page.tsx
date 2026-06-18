@@ -14,7 +14,11 @@ export default function Home() {
         <div className="landing-hero-overlay" />
         <div className="landing-hero-content">
           <h1 id="cover-title">Welcome to Yu Yang's homepage</h1>
-          <p>Walk with excellence</p>
+          <p className="cover-subtitle" aria-label="Walk with excellence">
+            <span className="typewriter-text" aria-hidden="true">
+              Walk with excellence
+            </span>
+          </p>
         </div>
         <button className="scroll-cue" type="button" aria-label="Enter homepage">
           <span />

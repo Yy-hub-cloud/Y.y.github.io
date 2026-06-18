@@ -226,12 +226,55 @@ main {
   font-weight: 820;
 }
 
-.landing-hero-content p {
+.cover-subtitle {
   margin: 18px 0 0;
   color: rgba(255, 255, 255, 0.94);
   font-size: clamp(18px, 2vw, 25px);
   line-height: 1.4;
   font-weight: 560;
+}
+
+.typewriter-text {
+  width: 0;
+  max-width: 20ch;
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid rgba(255, 255, 255, 0.94);
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  white-space: nowrap;
+  animation:
+    typewriter 2.4s steps(20, end) 520ms forwards,
+    typewriter-caret 780ms step-end infinite;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 20ch;
+  }
+}
+
+@keyframes typewriter-caret {
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.94);
+  }
+
+  50% {
+    border-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-text {
+    width: auto;
+    max-width: none;
+    border-right: 0;
+    animation: none;
+  }
 }
 
 .scroll-cue {
