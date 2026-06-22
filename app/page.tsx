@@ -1,9 +1,13 @@
 import { CoverJump } from "./cover-jump";
 import { ProfileCard, SiteFooter, SiteHeader, assetPath, routePath } from "./site-components";
-import { awards, educationItems, publications, researchAreas } from "./site-data";
+import { awards, educationItems, publishedPublications, researchAreas } from "./site-data";
 
 export default function Home() {
-  const rollingPublications = [...publications, ...publications];
+  const featuredPublications = publishedPublications.slice(0, 5);
+  const shouldScrollPublications = featuredPublications.length >= 5;
+  const rollingPublications = shouldScrollPublications
+    ? [...featuredPublications, ...featuredPublications]
+    : featuredPublications;
 
   return (
     <>
@@ -90,36 +94,50 @@ export default function Home() {
                   View all
                 </a>
               </div>
-              <div className="publication-carousel" aria-label="Latest five publications">
-                <div className="publication-track">
-                  {rollingPublications.map((item, index) => (
-                    <article className="publication-card publication-slide" key={`${item.title}-${index}`}>
-                      <div className="publication-figure">
-                        <img src={assetPath(item.imagePath)} alt="" />
-                      </div>
-                      <div className="publication-content">
-                        <div className="publication-meta">
-                          <span>{item.status}</span>
-                          <span>Citations: {item.citations}</span>
-                        </div>
-                        <h3>{item.title}</h3>
-                        <p className="publication-authors">{item.authors}</p>
-                        <ul className="highlight-list">
-                          {item.highlights.slice(0, 2).map((highlight) => (
-                            <li key={highlight}>{highlight}</li>
-                          ))}
-                        </ul>
-                        <a className="project-link" href={routePath("/publications")}>
-                          Publication details
-                        </a>
-                      </div>
-                    </article>
-                  ))}
+              {featuredPublications.length > 0 ? (
+                <>
+                  <div className="publication-carousel" aria-label="Latest published publications">
+                    <div
+                      className={`publication-track${
+                        shouldScrollPublications ? " publication-track-scrolling" : ""
+                      }`}
+                    >
+                      {rollingPublications.map((item, index) => (
+                        <article className="publication-card publication-slide" key={`${item.title}-${index}`}>
+                          <div className="publication-figure">
+                            <img src={assetPath(item.imagePath)} alt="" />
+                          </div>
+                          <div className="publication-content">
+                            <div className="publication-meta">
+                              <span>{item.status}</span>
+                              <span>Citations: {item.citations}</span>
+                            </div>
+                            <h3>{item.title}</h3>
+                            <p className="publication-authors">{item.authors}</p>
+                            <ul className="highlight-list">
+                              {item.highlights.slice(0, 2).map((highlight) => (
+                                <li key={highlight}>{highlight}</li>
+                              ))}
+                            </ul>
+                            <a className="project-link" href={routePath("/publications")}>
+                              Publication details
+                            </a>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+                  {shouldScrollPublications ? (
+                    <div className="carousel-note" aria-hidden="true">
+                      Auto-scrolling latest 5
+                    </div>
+                  ) : null}
+                </>
+              ) : (
+                <div className="publication-empty">
+                  Published articles will appear here after publication details are available.
                 </div>
-              </div>
-              <div className="carousel-note" aria-hidden="true">
-                Auto-scrolling latest 5
-              </div>
+              )}
             </section>
 
             <section className="overview-section education-section" id="education" aria-labelledby="education-title">

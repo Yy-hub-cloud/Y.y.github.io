@@ -1,3 +1,58 @@
+import publicationItems from "./publications-data.json";
+
+export type AuthorRole = "first" | "co-first" | "other";
+
+export type PublicationItem = {
+  source?: string;
+  openAlexId?: string;
+  doi?: string;
+  publicationDate?: string;
+  venue?: string;
+  status: string;
+  citations: string;
+  title: string;
+  authors: string;
+  imagePath: string;
+  projectHref: string;
+  highlights: string[];
+  overview: string;
+  isPlaceholder?: boolean;
+  isPublished?: boolean;
+  authorRole?: AuthorRole;
+};
+
+const authorRolePriority: Record<AuthorRole, number> = {
+  first: 0,
+  "co-first": 0,
+  other: 1,
+};
+
+function normalizeAuthorRole(role: string | undefined): AuthorRole {
+  if (role === "first" || role === "co-first") {
+    return role;
+  }
+
+  return "other";
+}
+
+function comparePublications(a: PublicationItem, b: PublicationItem) {
+  const roleDifference =
+    authorRolePriority[normalizeAuthorRole(a.authorRole)] -
+    authorRolePriority[normalizeAuthorRole(b.authorRole)];
+
+  if (roleDifference !== 0) {
+    return roleDifference;
+  }
+
+  return (b.publicationDate ?? "").localeCompare(a.publicationDate ?? "");
+}
+
+function isVisiblePublishedPublication(item: PublicationItem) {
+  return item.isPublished === true && item.isPlaceholder !== true;
+}
+
+const publicationData = publicationItems as PublicationItem[];
+
 export const profile = {
   name: "Yang Yu",
   role: "PhD Student",
@@ -44,85 +99,11 @@ export const researchAreas = [
   },
 ];
 
-export const publications = [
-  {
-    status: "In preparation",
-    citations: "TBD",
-    title: "Underwater Electrophysiological Interface for Stable Muscle Signal Acquisition",
-    authors: "Yang Yu, collaborators, and Changsheng Wu",
-    imagePath: "/publication-placeholder.svg",
-    projectHref: "#",
-    highlights: [
-      "Stable underwater EMG acquisition with SNR > 30 dB and continuous recording over 30 min.",
-      "Flexible tissue-adhesive electrodes for dynamic wet environments.",
-      "Signal fidelity evaluation and fatigue-related feature extraction.",
-    ],
-    overview:
-      "This work focuses on stable muscle-signal acquisition in underwater environments through flexible tissue-adhesive electrodes and signal-analysis workflows.",
-  },
-  {
-    status: "Coming soon",
-    citations: "TBD",
-    title: "Flexible Tissue-Adhesive Electrodes for Wet Biointerfaces",
-    authors: "Details to be added",
-    imagePath: "/publication-placeholder.svg",
-    projectHref: "#",
-    highlights: [
-      "Publication metadata will be added after manuscript details are finalized.",
-      "Prepared as a future slot for electrode-interface research output.",
-    ],
-    overview:
-      "A reserved publication slot for future work on flexible, tissue-adhesive bioelectronic interfaces.",
-    isPlaceholder: true,
-  },
-  {
-    status: "Coming soon",
-    citations: "TBD",
-    title: "Signal Fidelity Analysis in Dynamic Wet Environments",
-    authors: "Details to be added",
-    imagePath: "/publication-placeholder.svg",
-    projectHref: "#",
-    highlights: [
-      "Publication metadata will be added after manuscript details are finalized.",
-      "Prepared as a future slot for wet-environment signal-analysis output.",
-    ],
-    overview:
-      "A reserved publication slot for future work on electrophysiological signal fidelity and feature extraction.",
-    isPlaceholder: true,
-  },
-  {
-    status: "Coming soon",
-    citations: "TBD",
-    title: "Three-Dimensional Stretchable Device Architectures",
-    authors: "Details to be added",
-    imagePath: "/publication-placeholder.svg",
-    projectHref: "#",
-    highlights: [
-      "Publication metadata will be added after manuscript details are finalized.",
-      "Prepared as a future slot for stretchable device research output.",
-    ],
-    overview:
-      "A reserved publication slot for future work on three-dimensional stretchable devices and electronic skin.",
-    isPlaceholder: true,
-  },
-  {
-    status: "Coming soon",
-    citations: "TBD",
-    title: "MEMS-Enabled Soft Biointerface Fabrication",
-    authors: "Details to be added",
-    imagePath: "/publication-placeholder.svg",
-    projectHref: "#",
-    highlights: [
-      "Publication metadata will be added after manuscript details are finalized.",
-      "Prepared as a future slot for MEMS and micro/nanofabrication output.",
-    ],
-    overview:
-      "A reserved publication slot for future work on MEMS-enabled fabrication for soft biointerfaces.",
-    isPlaceholder: true,
-  },
-];
+export const publications = [...publicationData].sort(comparePublications);
 
-export const publication = publications[0];
+export const publishedPublications = publications.filter(isVisiblePublishedPublication);
+
+export const publication = publishedPublications[0] ?? publications[0];
 
 export const educationItems = [
   {
