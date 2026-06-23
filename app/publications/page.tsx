@@ -13,7 +13,7 @@ export default function PublicationsPage() {
       <SiteHeader active="Publications" />
 
       <main className="subpage-main">
-        <PageHero eyebrow="Publications" title="Selected Publications">
+        <PageHero title="Publications">
           <p>
             Published journal articles, project pages, and citation links will be listed here as
             publication details become available.

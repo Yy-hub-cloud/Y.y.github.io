@@ -13,7 +13,7 @@ export default function AwardsPage() {
       <SiteHeader active="Awards" />
 
       <main className="subpage-main">
-        <PageHero eyebrow="Awards" title="Awards And Honors">
+        <PageHero title="Awards">
           <p>
             This page keeps scholarships and recognitions separate from the homepage summary, making
             it easier to expand with certificates, dates, and supporting details later.

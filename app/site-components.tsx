@@ -47,6 +47,23 @@ function GitHubIcon() {
   );
 }
 
+function ContactText({ label, value }: { label: string; value: string }) {
+  return (
+    <span className="contact-copy">
+      <span className="contact-label">{label}</span>
+      <span className="contact-value">{value}</span>
+    </span>
+  );
+}
+
+function formatPhoneDisplay(phone: string) {
+  return phone.replace(/^\+86(\d{3})(\d{4})(\d{4})$/, "+86 $1 $2 $3");
+}
+
+function formatUrlDisplay(url: string) {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+}
+
 export function GraduationCapIcon() {
   return (
     <svg className="edu-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -93,21 +110,21 @@ export function ProfileCard() {
         <a href={profile.affiliationUrl}>{profile.affiliation}</a>
       </p>
       <div className="contact-list" aria-label="Contact links">
-        <a className="contact-link" href={`mailto:${profile.email}`}>
+        <a className="contact-link" href={`mailto:${profile.email}`} aria-label={`Email ${profile.email}`}>
           <EmailIcon />
-          <span>Email</span>
+          <ContactText label="Email" value={profile.email} />
         </a>
-        <a className="contact-link" href={`tel:${profile.phone}`}>
+        <a className="contact-link" href={`tel:${profile.phone}`} aria-label={`Phone ${profile.phone}`}>
           <PhoneIcon />
-          <span>Phone</span>
+          <ContactText label="Phone" value={formatPhoneDisplay(profile.phone)} />
         </a>
-        <a className="contact-link" href={assetPath(profile.cvPath)}>
+        <a className="contact-link" href={assetPath(profile.cvPath)} aria-label="Download CV PDF">
           <CvIcon />
-          <span>CV</span>
+          <ContactText label="CV" value="Download CV PDF" />
         </a>
-        <a className="contact-link" href={profile.githubUrl}>
+        <a className="contact-link" href={profile.githubUrl} aria-label={`GitHub ${formatUrlDisplay(profile.githubUrl)}`}>
           <GitHubIcon />
-          <span>GitHub</span>
+          <ContactText label="GitHub" value={formatUrlDisplay(profile.githubUrl)} />
         </a>
       </div>
     </aside>
@@ -124,17 +141,14 @@ export function SiteFooter() {
 }
 
 export function PageHero({
-  eyebrow,
   title,
   children,
 }: Readonly<{
-  eyebrow: string;
   title: string;
   children: ReactNode;
 }>) {
   return (
     <section className="subpage-hero">
-      <p className="subpage-eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <div className="subpage-intro">{children}</div>
     </section>

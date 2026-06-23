@@ -15,7 +15,7 @@ export default function ContactPage() {
       <SiteHeader active="Contact" />
 
       <main className="subpage-main">
-        <PageHero eyebrow="Contact" title="Contact">
+        <PageHero title="Contact">
           <p>
             For academic collaboration, research discussion, or CV requests, please use the contact
             channels below.

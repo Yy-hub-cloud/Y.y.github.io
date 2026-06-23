@@ -30,7 +30,7 @@ body {
   background:
     linear-gradient(180deg, rgba(255, 253, 247, 0.96) 0, rgba(251, 249, 241, 0.98) 58%, #f3f1e8 100%),
     var(--bg);
-  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.65;
   text-rendering: optimizeLegibility;
@@ -294,7 +294,7 @@ main {
   display: inline-block;
   overflow: hidden;
   border-right: 2px solid rgba(165, 130, 57, 0.9);
-  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  font-family: Arial, Helvetica, sans-serif;
   white-space: nowrap;
   animation:
     typewriter 2.4s steps(20, end) 520ms forwards,
@@ -466,26 +466,49 @@ h3 {
 }
 
 .contact-link {
-  min-height: 25px;
+  min-height: 42px;
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: 13px;
-  padding: 3px 0;
+  padding: 5px 0;
   border: 0;
   border-radius: 0;
   color: #4f614f;
   background: transparent;
   font-size: 14px;
   font-weight: 500;
+  line-height: 1.45;
 }
 
 .contact-link svg {
   width: 18px;
   height: 18px;
   flex: 0 0 auto;
+  margin-top: 2px;
   fill: currentColor;
   color: var(--accent-strong);
+}
+
+.contact-copy {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+}
+
+.contact-label {
+  color: #4f614f;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.contact-value {
+  color: #4f614f;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 
 .hero-content {
@@ -629,8 +652,13 @@ h3 {
   border-radius: 50%;
   color: var(--accent-strong);
   background: linear-gradient(180deg, #dfe9d9, var(--accent-soft));
-  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
   font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
 }
 
 .research-card p {
@@ -970,14 +998,6 @@ footer {
   max-width: 900px;
   padding-bottom: 34px;
   border-bottom: 1px solid var(--line);
-}
-
-.subpage-eyebrow {
-  margin-bottom: 10px;
-  color: var(--brass);
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
 .subpage-hero h1 {
