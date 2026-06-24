@@ -387,7 +387,7 @@ main {
   border: 1px solid rgba(222, 216, 200, 0.9);
   border-radius: 50%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 30%;
   background: #fffdf7;
 }
 
@@ -1164,12 +1164,131 @@ footer {
   color: #4f554d;
 }
 
-.location-panel iframe {
+.cartoon-map {
   width: 100%;
   min-height: 388px;
-  border: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(222, 216, 200, 0.82);
   border-radius: 6px;
-  background: var(--soft);
+  background: #f8f5e9;
+  box-shadow: inset 0 1px 0 rgba(255, 253, 247, 0.9);
+}
+
+.cartoon-map svg {
+  width: 100%;
+  height: 100%;
+  min-height: 388px;
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.map-bg {
+  fill: #f7f4e8;
+}
+
+.map-water {
+  fill: #cce8ea;
+  opacity: 0.92;
+}
+
+.map-park {
+  fill: #dfe9d9;
+}
+
+.map-park-secondary {
+  fill: #d8e7dd;
+}
+
+.map-road {
+  fill: none;
+  stroke: #fffdf7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 20;
+  filter: drop-shadow(0 1px 0 rgba(117, 119, 105, 0.12));
+}
+
+.map-road-wide {
+  stroke-width: 30;
+}
+
+.map-path {
+  fill: none;
+  stroke: rgba(165, 130, 57, 0.55);
+  stroke-dasharray: 12 12;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+.map-building rect {
+  fill: #fffdf7;
+  stroke: #d7cfbb;
+  stroke-width: 2;
+}
+
+.map-building-muted rect {
+  fill: #f1ead8;
+}
+
+.map-building text,
+.map-compass text {
+  fill: #4f614f;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-anchor: middle;
+}
+
+.map-pin-halo {
+  fill: rgba(165, 130, 57, 0.18);
+}
+
+.map-pin-drop {
+  fill: #31583c;
+  filter: drop-shadow(0 12px 14px rgba(49, 88, 60, 0.22));
+}
+
+.map-pin-dot {
+  fill: #fff7d8;
+}
+
+.map-pin text {
+  fill: #31583c;
+  font-size: 18px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+
+.map-label-card rect,
+.map-label-card path {
+  fill: #31583c;
+  filter: drop-shadow(0 12px 18px rgba(49, 88, 60, 0.2));
+}
+
+.map-label-card text {
+  fill: #fffdf7;
+  letter-spacing: 0;
+}
+
+.map-label-title {
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.map-label-subtitle {
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0.86;
+}
+
+.map-compass circle {
+  fill: rgba(255, 253, 247, 0.82);
+  stroke: #d7cfbb;
+}
+
+.map-compass path {
+  fill: #a58239;
 }
 
 @media (max-width: 980px) {
