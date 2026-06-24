@@ -108,17 +108,20 @@ export const publication = publishedPublications[0] ?? publications[0];
 export const educationItems = [
   {
     period: "Present",
-    degree: "PhD in Physical Chemistry",
+    degree: "PhD",
+    major: "Physical Chemistry",
     school: "Nankai University, China",
   },
   {
     period: "2024.7 - 2025.7",
-    degree: "MSc in Materials Science and Engineering",
+    degree: "MSc",
+    major: "Materials Science and Engineering",
     school: "National University of Singapore, Singapore",
   },
   {
     period: "2020.9 - 2024.6",
-    degree: "BEng in Materials Science and Engineering",
+    degree: "BEng",
+    major: "Materials Science and Engineering",
     school: "Jilin University, China",
   },
 ];

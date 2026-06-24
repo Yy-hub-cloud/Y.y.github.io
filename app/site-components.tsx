@@ -15,6 +15,14 @@ export function routePath(path: string) {
   return `${basePath}${path}/`;
 }
 
+export function GraduationCapIcon() {
+  return (
+    <svg className="edu-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3 1.5 8.2 12 13.4l8-3.96V16h2V8.2L12 3Zm-6 8.8v4.1c0 1.9 3.1 3.6 6 3.6s6-1.7 6-3.6v-4.1l-6 3-6-3Z" />
+    </svg>
+  );
+}
+
 function EmailIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -64,14 +72,6 @@ function formatUrlDisplay(url: string) {
   return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
-export function GraduationCapIcon() {
-  return (
-    <svg className="edu-icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 3 1.5 8.2 12 13.4l8-3.96V16h2V8.2L12 3Zm-6 8.8v4.1c0 1.9 3.1 3.6 6 3.6s6-1.7 6-3.6v-4.1l-6 3-6-3Z" />
-    </svg>
-  );
-}
-
 export function SiteHeader({
   active,
   variant = "default",
@@ -92,15 +92,12 @@ export function SiteHeader({
             </a>
           ))}
         </div>
-        <a className="nav-cta" href={assetPath(profile.cvPath)}>
-          CV
-        </a>
       </nav>
     </header>
   );
 }
 
-export function ProfileCard() {
+export function ProfileCard({ showContactDetails = false }: { showContactDetails?: boolean } = {}) {
   return (
     <aside className="profile-card" id="contact">
       <img className="portrait" src={assetPath(profile.portraitPath)} alt={`Portrait of ${profile.name}`} />
@@ -109,24 +106,26 @@ export function ProfileCard() {
       <p className="affiliation">
         <a href={profile.affiliationUrl}>{profile.affiliation}</a>
       </p>
-      <div className="contact-list" aria-label="Contact links">
-        <a className="contact-link" href={`mailto:${profile.email}`} aria-label={`Email ${profile.email}`}>
-          <EmailIcon />
-          <ContactText label="Email" value={profile.email} />
-        </a>
-        <a className="contact-link" href={`tel:${profile.phone}`} aria-label={`Phone ${profile.phone}`}>
-          <PhoneIcon />
-          <ContactText label="Phone" value={formatPhoneDisplay(profile.phone)} />
-        </a>
-        <a className="contact-link" href={assetPath(profile.cvPath)} aria-label="Download CV PDF">
-          <CvIcon />
-          <ContactText label="CV" value="Download CV PDF" />
-        </a>
-        <a className="contact-link" href={profile.githubUrl} aria-label={`GitHub ${formatUrlDisplay(profile.githubUrl)}`}>
-          <GitHubIcon />
-          <ContactText label="GitHub" value={formatUrlDisplay(profile.githubUrl)} />
-        </a>
-      </div>
+      {showContactDetails ? (
+        <div className="contact-list" aria-label="Contact links">
+          <a className="contact-link" href={`mailto:${profile.email}`} aria-label={`Email ${profile.email}`}>
+            <EmailIcon />
+            <ContactText label="Email" value={profile.email} />
+          </a>
+          <a className="contact-link" href={`tel:${profile.phone}`} aria-label={`Phone ${profile.phone}`}>
+            <PhoneIcon />
+            <ContactText label="Phone" value={formatPhoneDisplay(profile.phone)} />
+          </a>
+          <a className="contact-link" href={assetPath(profile.cvPath)} aria-label="Download CV PDF">
+            <CvIcon />
+            <ContactText label="CV" value="Download CV PDF" />
+          </a>
+          <a className="contact-link" href={profile.githubUrl} aria-label={`GitHub ${formatUrlDisplay(profile.githubUrl)}`}>
+            <GitHubIcon />
+            <ContactText label="GitHub" value={formatUrlDisplay(profile.githubUrl)} />
+          </a>
+        </div>
+      ) : null}
     </aside>
   );
 }

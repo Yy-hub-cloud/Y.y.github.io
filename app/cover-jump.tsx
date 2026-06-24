@@ -1,9 +1,26 @@
 "use client";
 
 import { useEffect } from "react";
+import { COVER_SEEN_KEY } from "./cover-session";
 
 const COVER_DISMISSED_CLASS = "cover-dismissed";
 const COVER_ACTIVE_CLASS = "cover-active";
+
+function coverHasBeenSeen() {
+  try {
+    return window.sessionStorage.getItem(COVER_SEEN_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function rememberCoverSeen() {
+  try {
+    window.sessionStorage.setItem(COVER_SEEN_KEY, "true");
+  } catch {
+    // Ignore storage failures so the cover still works in restricted browsers.
+  }
+}
 
 export function CoverJump() {
   useEffect(() => {
@@ -17,6 +34,13 @@ export function CoverJump() {
     let touchStartY = 0;
     let lockTimer: number | undefined;
 
+    if (coverHasBeenSeen()) {
+      document.body.classList.add(COVER_DISMISSED_CLASS);
+      document.body.classList.remove(COVER_ACTIVE_CLASS);
+      cover.setAttribute("aria-hidden", "true");
+      return;
+    }
+
     document.body.classList.add(COVER_ACTIVE_CLASS);
 
     const coverIsActive = () => !document.body.classList.contains(COVER_DISMISSED_CLASS);
@@ -27,6 +51,7 @@ export function CoverJump() {
       }
 
       locked = true;
+      rememberCoverSeen();
       window.scrollTo({ top: 0, behavior: "auto" });
       document.body.classList.add(COVER_DISMISSED_CLASS);
       cover.setAttribute("aria-hidden", "true");
@@ -109,7 +134,6 @@ export function CoverJump() {
     return () => {
       window.clearTimeout(lockTimer);
       document.body.classList.remove(COVER_ACTIVE_CLASS);
-      document.body.classList.remove(COVER_DISMISSED_CLASS);
       cue?.removeEventListener("click", onCueClick);
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("keydown", onKeyDown);

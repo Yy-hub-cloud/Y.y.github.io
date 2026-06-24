@@ -1,6 +1,31 @@
 import { CoverJump } from "./cover-jump";
+import { COVER_SEEN_KEY } from "./cover-session";
 import { ProfileCard, SiteFooter, SiteHeader, assetPath, routePath } from "./site-components";
-import { awards, educationItems, publishedPublications, researchAreas } from "./site-data";
+import { awards, educationItems, profile, publishedPublications, researchAreas } from "./site-data";
+
+function MailIcon() {
+  return (
+    <svg className="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4.5 6.5h15v11h-15v-11Zm1.4 1.4 6.1 4.5 6.1-4.5H5.9Zm12.2 1.8-5.4 4a1.18 1.18 0 0 1-1.4 0l-5.4-4v6.4h12.2V9.7Z" />
+    </svg>
+  );
+}
+
+function GitHubButtonIcon() {
+  return (
+    <svg className="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 .7A11.3 11.3 0 0 0 8.43 22.73c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.34-3.79-1.34-.5-1.3-1.24-1.65-1.24-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 .1.36 2.63 2.96 1.88.1-.73.39-1.22.71-1.5-2.5-.29-5.13-1.25-5.13-5.58 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.1-2.99 0 0 .94-.3 3.1 1.16a10.65 10.65 0 0 1 5.64 0c2.15-1.46 3.1-1.16 3.1-1.16.6 1.56.22 2.71.1 2.99.72.79 1.16 1.8 1.16 3.03 0 4.34-2.64 5.29-5.15 5.57.4.35.76 1.04.76 2.1v3.15c0 .3.2.65.78.54A11.3 11.3 0 0 0 12 .7Z" />
+    </svg>
+  );
+}
+
+function CvButtonIcon() {
+  return (
+    <svg className="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 2h8l5 5v15H6V2Zm7 1.8V8h4.2L13 3.8ZM8 11v1.7h8V11H8Zm0 3.5v1.7h8v-1.7H8Zm0 3.5v1.7h5V18H8Z" />
+    </svg>
+  );
+}
 
 export default function Home() {
   const featuredPublications = publishedPublications.slice(0, 5);
@@ -11,6 +36,11 @@ export default function Home() {
 
   return (
     <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `try{if(window.sessionStorage.getItem(${JSON.stringify(COVER_SEEN_KEY)})==="true"){document.body.classList.add("cover-dismissed");}}catch(e){}`,
+        }}
+      />
       <CoverJump />
 
       <section className="landing-hero" id="cover" aria-labelledby="cover-title">
@@ -50,14 +80,17 @@ export default function Home() {
               </div>
 
               <div className="hero-actions">
-                <a className="button button-primary" href={assetPath("/cv.pdf")}>
-                  Download CV
-                </a>
-                <a className="button button-secondary" href="mailto:e1352120@u.nus.edu">
+                <a className="button button-primary" href={`mailto:${profile.email}`}>
+                  <MailIcon />
                   Email Me
                 </a>
-                <a className="button button-ghost" href="https://github.com/">
+                <a className="button button-secondary" href={profile.githubUrl}>
+                  <GitHubButtonIcon />
                   GitHub
+                </a>
+                <a className="button button-ghost" href={assetPath(profile.cvPath)}>
+                  <CvButtonIcon />
+                  Download CV
                 </a>
               </div>
             </div>
@@ -147,9 +180,12 @@ export default function Home() {
                   <article className="timeline-item" key={item.degree}>
                     <div className="timeline-marker" aria-hidden="true" />
                     <div>
-                      <h3>{item.degree}</h3>
-                      <p className="school">{item.school}</p>
-                      <p className="timeline-period">{item.period}</p>
+                      <h3>
+                        {item.school}{" \u00b7 "}{item.degree}
+                      </h3>
+                      <p className="timeline-detail">
+                        {item.major}{" \u00b7 "}{item.period}
+                      </p>
                     </div>
                   </article>
                 ))}

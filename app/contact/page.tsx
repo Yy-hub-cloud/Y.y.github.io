@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero, ProfileCard, SiteFooter, SiteHeader, assetPath } from "../site-components";
+import { PageHero, ProfileCard, SiteFooter, SiteHeader } from "../site-components";
 import { profile } from "../site-data";
 
 export const metadata: Metadata = {
@@ -17,31 +17,25 @@ export default function ContactPage() {
       <main className="subpage-main">
         <PageHero title="Contact">
           <p>
-            For academic collaboration, research discussion, or CV requests, please use the contact
-            channels below.
+            Current academic location and campus map for visits, correspondence, and affiliation
+            reference.
           </p>
         </PageHero>
 
         <section className="contact-page-grid" aria-label="Contact details">
-          <ProfileCard />
-          <div className="contact-panel">
-            <h2>Direct Links</h2>
-            <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            <a href={`tel:${profile.phone}`}>{profile.phone}</a>
-            <a href={assetPath(profile.cvPath)}>Download CV</a>
-            <a href={profile.githubUrl}>GitHub</a>
-            <div className="location-card">
-              <div>
-                <h3>Location</h3>
-                <p>{profile.location}</p>
-              </div>
-              <iframe
-                title={`Map of ${profile.location}`}
-                src={mapSrc}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+          <ProfileCard showContactDetails />
+          <div className="contact-panel location-panel">
+            <h2>Location</h2>
+            <p>{profile.location}</p>
+            <p className="location-note">
+              Campus map for locating the Nankai University area and nearby academic facilities.
+            </p>
+            <iframe
+              title={`Map of ${profile.location}`}
+              src={mapSrc}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </section>
       </main>
