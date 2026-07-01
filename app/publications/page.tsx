@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   description: "Publications and selected research outputs by Yang Yu.",
 };
 
+function renderAuthors(authors: string) {
+  const parts = authors.split(/(Yang Yu)/g);
+
+  return parts.map((part, index) =>
+    part === "Yang Yu" ? <strong key={`${part}-${index}`}>{part}</strong> : part,
+  );
+}
+
 export default function PublicationsPage() {
   return (
     <>
@@ -15,33 +23,33 @@ export default function PublicationsPage() {
       <main className="subpage-main">
         <PageHero title="Publications">
           <p>
-            Published journal articles, project pages, and citation links will be listed here as
-            publication details become available.
+            Published journal articles and selected research outputs are listed here. The newest
+            online paper is now included below.
           </p>
         </PageHero>
 
         <section className="publication-list-page" aria-label="Publication list">
           {publishedPublications.length > 0 ? (
-            publishedPublications.map((item, index) => (
+            publishedPublications.map((item) => (
               <article className="publication-detail" key={item.title}>
                 <div className="publication-detail-figure">
-                  <img src={assetPath(item.imagePath)} alt="" />
+                  <img src={assetPath(item.imagePath)} alt={`Figure 1 for ${item.title}`} />
                 </div>
                 <div className="publication-detail-content">
-                  <div className="publication-meta">
-                    <span>{item.status}</span>
-                    <span>Citations: {item.citations}</span>
+                  <h2>{item.title}</h2>
+                  <p className="publication-authors publication-authors-emphasis">{renderAuthors(item.authors)}</p>
+                  <div className="publication-citation-meta">
+                    {item.venue ? <span>{item.venue}</span> : null}
+                    {item.publicationDate ? <span>{item.publicationDate.slice(0, 4)}</span> : null}
                   </div>
-                  <h2>
-                    {String(index + 1).padStart(2, "0")}. {item.title}
-                  </h2>
-                  <p className="publication-authors">{item.authors}</p>
-                  <p>{item.overview}</p>
-                  <ul className="detail-list">
-                    {item.highlights.map((highlight) => (
-                      <li key={highlight}>{highlight}</li>
-                    ))}
-                  </ul>
+                  {item.doi ? (
+                    <p className="publication-detail-doi">
+                      DOI: <a href={`https://doi.org/${item.doi}`}>{item.doi}</a>
+                    </p>
+                  ) : null}
+                  <a className="project-link" href={item.projectHref}>
+                    View on publisher website
+                  </a>
                 </div>
               </article>
             ))

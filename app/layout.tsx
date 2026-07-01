@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Yang Yu | Academic Homepage",
   description:
-    "Academic homepage for Yang Yu, a PhD student working on flexible electronics, bioelectronic interfaces, MEMS, and stretchable devices.",
+    "Academic homepage for Yang Yu, featuring research on predictably formed three-dimensional buckling structures, flexible electronics, and bioelectronic interfaces.",
 };
 
 export default function RootLayout({

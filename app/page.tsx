@@ -1,7 +1,26 @@
 import { CoverJump } from "./cover-jump";
 import { COVER_SEEN_KEY } from "./cover-session";
+import { ResearchHeroFigure } from "./research-hero-figure";
 import { ProfileCard, SiteFooter, SiteHeader, assetPath, routePath } from "./site-components";
-import { awards, educationItems, profile, publishedPublications, researchAreas } from "./site-data";
+import { awards, educationItems, profile, publishedPublications } from "./site-data";
+
+const valueSteps = [
+  {
+    label: "01",
+    title: "3D formability",
+    summary: "A flat precursor becomes a stable three-dimensional structure through controlled release.",
+  },
+  {
+    label: "02",
+    title: "Stress as a design tool",
+    summary: "Structure and stress are tuned together instead of relying only on intrinsic material selection.",
+  },
+  {
+    label: "03",
+    title: "More tunable performance",
+    summary: "Mechanical and functional behavior gain a broader adjustment space during three-dimensional formation.",
+  },
+];
 
 function MailIcon() {
   return (
@@ -27,9 +46,15 @@ function CvButtonIcon() {
   );
 }
 
+function renderAuthors(authors: string) {
+  return authors.split(/(Yang Yu)/g).map((part, index) =>
+    part === "Yang Yu" ? <strong key={`${part}-${index}`}>{part}</strong> : part,
+  );
+}
+
 export default function Home() {
   const featuredPublications = publishedPublications.slice(0, 5);
-  const shouldScrollPublications = featuredPublications.length >= 5;
+  const shouldScrollPublications = featuredPublications.length > 1;
   const rollingPublications = shouldScrollPublications
     ? [...featuredPublications, ...featuredPublications]
     : featuredPublications;
@@ -43,23 +68,29 @@ export default function Home() {
       />
       <CoverJump />
 
-      <section className="landing-hero" id="cover" aria-labelledby="cover-title">
-        <img className="landing-hero-image" src={assetPath("/hero-campus.png")} alt="" />
-        <div className="landing-hero-overlay" />
-        <div className="landing-hero-content">
-          <h1 id="cover-title">Welcome to Yu Yang's homepage</h1>
-          <p className="cover-subtitle" aria-label="Walk with excellence">
-            <span className="typewriter-text" aria-hidden="true">
-              Walk with excellence
-            </span>
-          </p>
+      <section
+        className="landing-hero research-cover research-cover-reference"
+        id="cover"
+        aria-label="Controlled buckling from a flat precursor to a three-dimensional structure"
+      >
+        <div className="research-cover-campus" aria-hidden="true">
+          <img src={assetPath("/hero-campus.png")} alt="" />
         </div>
-        <button className="scroll-cue" type="button" aria-label="Enter homepage">
-          <span />
-        </button>
+        <div className="research-cover-layout">
+          <div className="research-cover-intro">
+            <h1>
+              <span>Welcome to Yu Yang&apos;s</span>
+              <span>homepage</span>
+            </h1>
+            <p className="research-cover-typewriter">Walk with excellence</p>
+          </div>
+          <div className="research-cover-art">
+            <ResearchHeroFigure />
+          </div>
+        </div>
       </section>
 
-      <div className="home-site" id="home-content">
+      <div className="home-site home-site-redesign" id="home-content">
         <SiteHeader active="Home" />
 
         <main>
@@ -70,6 +101,7 @@ export default function Home() {
               <h2 id="hero-title" className="hero-title">
                 Welcome to my homepage
               </h2>
+              <p className="welcome-motto">Walk with excellence</p>
               <div className="intro">
                 <p>
                   I work at the intersection of materials science, flexible electronics, and
@@ -96,22 +128,33 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="focus-strip" id="research" aria-labelledby="research-title">
-            <div className="focus-heading">
-              <h2 id="research-title">Research Focus</h2>
-            </div>
-            <div className="research-grid">
-              {researchAreas.map((area) => (
-                <article className="research-card" key={area.title}>
-                  <span className="research-mark" aria-hidden="true">
-                    {area.label}
-                  </span>
-                  <div>
-                    <h3>{area.title}</h3>
-                    <p>{area.summary}</p>
-                  </div>
-                </article>
-              ))}
+          <section className="value-stage" id="research" aria-labelledby="value-stage-title">
+            <span className="section-eyebrow">Why this work matters</span>
+
+            <div className="value-stage-grid">
+              <div className="value-stage-copy">
+                <h2 id="value-stage-title">
+                  Using structural stress control to expand the space of tunable performance
+                </h2>
+                <p>
+                  Three-dimensional buckling is not only a change in shape. It turns a problem that often depends
+                  on intrinsic material choice into one that can also be designed through structure and stress.
+                </p>
+                <p>
+                  That shift opens a more controllable route for tuning behavior during formation, while keeping the
+                  narrative grounded in the work that has already been completed and can be supported by figures.
+                </p>
+              </div>
+
+              <div className="value-steps" aria-label="Research value pathway">
+                {valueSteps.map((step) => (
+                  <article className="value-step-card" key={step.label}>
+                    <span className="value-step-label">{step.label}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.summary}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </section>
 
@@ -146,14 +189,20 @@ export default function Home() {
                               <span>Citations: {item.citations}</span>
                             </div>
                             <h3>{item.title}</h3>
-                            <p className="publication-authors">{item.authors}</p>
+                            <p className="publication-authors">{renderAuthors(item.authors)}</p>
+                            {item.doi ? (
+                              <p className="publication-doi">
+                                DOI:{" "}
+                                <a href={`https://doi.org/${item.doi}`}>{item.doi}</a>
+                              </p>
+                            ) : null}
                             <ul className="highlight-list">
                               {item.highlights.slice(0, 2).map((highlight) => (
                                 <li key={highlight}>{highlight}</li>
                               ))}
                             </ul>
-                            <a className="project-link" href={routePath("/publications")}>
-                              Publication details
+                            <a className="project-link" href={item.projectHref}>
+                              View article
                             </a>
                           </div>
                         </article>
@@ -162,7 +211,7 @@ export default function Home() {
                   </div>
                   {shouldScrollPublications ? (
                     <div className="carousel-note" aria-hidden="true">
-                      Auto-scrolling latest 5
+                      Auto-scrolling latest publications
                     </div>
                   ) : null}
                 </>
@@ -177,7 +226,7 @@ export default function Home() {
               <h2 id="education-title">Education</h2>
               <div className="timeline">
                 {educationItems.map((item) => (
-                  <article className="timeline-item" key={item.degree}>
+                  <article className="timeline-item" key={`${item.school}-${item.degree}`}>
                     <div className="timeline-marker" aria-hidden="true" />
                     <div>
                       <h3>
@@ -205,9 +254,6 @@ export default function Home() {
                   </article>
                 ))}
               </div>
-              <a className="section-more" href={routePath("/awards")}>
-                Full awards
-              </a>
             </section>
           </div>
         </main>

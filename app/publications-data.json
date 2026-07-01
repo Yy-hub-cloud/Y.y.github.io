@@ -1,5 +1,24 @@
 [
   {
+    "status": "Published online",
+    "citations": "0",
+    "publicationDate": "2026-06-26",
+    "isPublished": true,
+    "authorRole": "other",
+    "title": "High-dipole ionic liquids mediate kinetic regulation of low-strain perovskite single crystals for γ-ray detection",
+    "authors": "Kai Ma, Yuqiang Wu, Yang Yu, Qian He, Linyue Gao, Jian Hu, Ke R. Yang, Thamraa Alshahrani, Yuanzhi Jiang, and Mingjian Yuan",
+    "venue": "Journal of Materials Chemistry C",
+    "doi": "10.1039/D6TC01605G",
+    "imagePath": "/article-d6tc01605g-figure1.jpg",
+    "projectHref": "https://pubs.rsc.org/en/content/articlelanding/2026/tc/d6tc01605g",
+    "highlights": [
+      "High-dipole ionic liquids are introduced as the key route for kinetic regulation.",
+      "The work focuses on low-strain perovskite single crystals.",
+      "The reported target application is γ-ray detection."
+    ],
+    "overview": "This recently published work studies how high-dipole ionic liquids mediate kinetic regulation in low-strain perovskite single crystals for γ-ray detection."
+  },
+  {
     "status": "In preparation",
     "citations": "TBD",
     "publicationDate": "",
