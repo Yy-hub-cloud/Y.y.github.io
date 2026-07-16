@@ -79,7 +79,7 @@ export default function Home() {
         <div className="research-cover-layout">
           <div className="research-cover-intro">
             <h1>
-              <span>Welcome to Yu Yang&apos;s</span>
+              <span>Welcome to Yang Yu&apos;s</span>
               <span>homepage</span>
             </h1>
             <p className="research-cover-typewriter">Walk with excellence</p>
